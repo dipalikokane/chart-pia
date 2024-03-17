@@ -1,0 +1,54 @@
+<form [formGroup]="loginForm" (ngSubmit)="formLogin(); generatePieChart()">
+    <label>FullName</label>
+    <br />
+    <input  type="text" placeholder="enter fullname" formControlName="name"/>
+    <br />
+    <label>Email</label>
+    <br />
+    <input  type="text" placeholder="enter email" formControlName="email"/>
+    <br />
+    <label>Phone</label>
+    <br />
+    <input  type="text" placeholder="enter phone" formControlName="phone"/>
+    <br /><br /><label>Select-option:</label>
+      <select formControlName="select">
+        <option>veg</option>
+        <input type="text" name="value1" placeholder="Value1" [(ngModel)]="value1" (blur)="onChangeValue()"/>
+        <br /><br />
+        <span *ngIf=" value1 > 100">Incorrect Value</span>
+
+
+        <option>Nonveg</option>
+        <input type="text" name="value2" placeholder="value2" [(ngModel)]="value2" (blur)="onChangeValue()"/>
+        <br /><br />
+        <span *ngIf=" value2 > 100">Incorrect Value</span>
+
+      </select>
+    <!-- **** -->
+    <br /><br />
+    <!-- <button (click)="addItem(loginForm.value)">Add Item</button> -->
+    <button (click)="addItem(loginForm.value)">Add</button>
+    <br /><br />
+    <canvas id="circleChart"></canvas>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th><br/><br/><br/>
+          <th>email</th><br/><br />
+          <th>phone</th><br/><br/>
+          <th>Selected Option</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{item.name}}</td><br/>
+          <td>{{item.email}}</td><br/>
+          <td>{{item.phone}}</td><br/>
+          <td>{{item.select}}</td><br/>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  
+  <canvas id="circleChart" width="400" height="400"></canvas>
+  
